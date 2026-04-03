@@ -13,6 +13,23 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
 
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - model: "qwen2.5:0.5b"
+            tag: "qwen2.5-0.5b"
+          - model: "qwen2.5:1.5b"
+            tag: "qwen2.5-1.5b"
+          - model: "llama3.2:1b"
+            tag: "llama3.2-1b"
+          - model: "llama3.2:3b"
+            tag: "llama3.2-3b"
+          - model: "gemma3:1b"
+            tag: "gemma3-1b"
+          - model: "deepseek-r1:1.5b"
+            tag: "deepseek-r1-1.5b"
+
     permissions:
       contents: read
       packages: write
@@ -40,8 +57,8 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=sha
-            type=raw,value=latest,enable={{is_default_branch}}
+            type=sha,prefix=${{ matrix.tag }}-
+            type=raw,value=${{ matrix.tag }},enable={{is_default_branch}}
 
       - name: Build and push
         uses: docker/build-push-action@v6
@@ -49,5 +66,6 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
+          build-args: MODEL=${{ matrix.model }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
