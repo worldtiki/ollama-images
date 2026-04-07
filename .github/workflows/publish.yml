@@ -8,6 +8,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+  OLLAMA_VERSION: "0.20.3"
 
 jobs:
   build:
@@ -64,7 +65,7 @@ jobs:
           platforms: ${{ matrix.arch.platform }}
           push: true
           build-args: MODEL=${{ matrix.model }}
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ matrix.tag }}-${{ matrix.arch.suffix }}
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:ollama${{ env.OLLAMA_VERSION }}-${{ matrix.tag }}-${{ matrix.arch.suffix }}
 
   merge:
     needs: build
@@ -107,13 +108,13 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=sha,prefix=${{ matrix.tag }}-
-            type=raw,value=${{ matrix.tag }},enable={{is_default_branch}}
+            type=sha,prefix=ollama${{ env.OLLAMA_VERSION }}-${{ matrix.tag }}-
+            type=raw,value=ollama${{ env.OLLAMA_VERSION }}-${{ matrix.tag }},enable={{is_default_branch}}
 
       - name: Create multi-arch manifest
         run: |
           for TAG in ${{ steps.meta.outputs.tags }}; do
             docker buildx imagetools create -t "${TAG}" \
-              ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ matrix.tag }}-amd64 \
-              ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ matrix.tag }}-arm64
+              ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:ollama${{ env.OLLAMA_VERSION }}-${{ matrix.tag }}-amd64 \
+              ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:ollama${{ env.OLLAMA_VERSION }}-${{ matrix.tag }}-arm64
           done
