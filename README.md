@@ -6,18 +6,18 @@ Pre-built Ollama Docker images with models already downloaded, ready to run.
 
 | Image                                                          | Model              | Use Case                   |
 |----------------------------------------------------------------|--------------------|----------------------------|
-| `ghcr.io/worldtiki/ollama-images:ollama0.20.3-qwen2.5-0.5b`   | `qwen2.5:0.5b`     | General chat               |
-| `ghcr.io/worldtiki/ollama-images:ollama0.20.3-qwen2.5-1.5b`   | `qwen2.5:1.5b`     | General chat               |
-| `ghcr.io/worldtiki/ollama-images:ollama0.20.3-llama3.2-1b`    | `llama3.2:1b`      | General chat, 128K context |
-| `ghcr.io/worldtiki/ollama-images:ollama0.20.3-llama3.2-3b`    | `llama3.2:3b`      | General chat               |
-| `ghcr.io/worldtiki/ollama-images:ollama0.20.3-gemma3-1b`      | `gemma3:1b`        | General chat               |
-| `ghcr.io/worldtiki/ollama-images:ollama0.20.3-deepseek-r1-1.5b` | `deepseek-r1:1.5b` | Reasoning                |
-| `ghcr.io/worldtiki/ollama-images:ollama0.20.3-gemma4-e4b`     | `gemma4:e4b`       | General chat               |
+| `ghcr.io/worldtiki/ollama-images:ollama0.20.2-qwen2.5-0.5b`   | `qwen2.5:0.5b`     | General chat               |
+| `ghcr.io/worldtiki/ollama-images:ollama0.20.2-qwen2.5-1.5b`   | `qwen2.5:1.5b`     | General chat               |
+| `ghcr.io/worldtiki/ollama-images:ollama0.20.2-llama3.2-1b`    | `llama3.2:1b`      | General chat, 128K context |
+| `ghcr.io/worldtiki/ollama-images:ollama0.20.2-llama3.2-3b`    | `llama3.2:3b`      | General chat               |
+| `ghcr.io/worldtiki/ollama-images:ollama0.20.2-gemma3-1b`      | `gemma3:1b`        | General chat               |
+| `ghcr.io/worldtiki/ollama-images:ollama0.20.2-deepseek-r1-1.5b` | `deepseek-r1:1.5b` | Reasoning                |
+| `ghcr.io/worldtiki/ollama-images:ollama0.20.2-gemma4-e4b`     | `gemma4:e4b`       | General chat               |
 
 ## Usage
 
 ```bash
-docker run -p 11434:11434 ghcr.io/worldtiki/ollama-images:ollama0.20.3-qwen2.5-0.5b
+docker run -p 11434:11434 ghcr.io/worldtiki/ollama-images:ollama0.20.2-qwen2.5-0.5b
 ```
 
 The model is already included in the image — no download required at startup.
@@ -31,5 +31,5 @@ docker build -t ollama-qwen .
 To use a different model or Ollama version:
 
 ```bash
-docker build --build-arg MODEL="llama3.2:1b" --build-arg OLLAMA_VERSION="0.20.3" -t ollama-llama .
+docker build --build-arg MODEL="llama3.2:1b" --build-arg OLLAMA_VERSION="0.20.2" -t ollama-llama .
 ```
