@@ -27,6 +27,8 @@ jobs:
             tag: "gemma3-1b"
           - model: "deepseek-r1:1.5b"
             tag: "deepseek-r1-1.5b"
+          - model: "gemma4:e4b"
+            tag: "gemma4-e4b"
         arch:
           - runner: ubuntu-latest
             platform: linux/amd64
@@ -84,6 +86,8 @@ jobs:
             tag: "gemma3-1b"
           - model: "deepseek-r1:1.5b"
             tag: "deepseek-r1-1.5b"
+          - model: "gemma4:e4b"
+            tag: "gemma4-e4b"
 
     permissions:
       contents: read
