@@ -1,5 +1,5 @@
 ARG OLLAMA_VERSION="0.20.2"
-FROM ollama/ollama:${OLLAMA_VERSION}
+FROM alpine/ollama:${OLLAMA_VERSION}
 
 ARG MODEL="qwen2.5:0.5b"
 ENV OLLAMA_MODELS=/models

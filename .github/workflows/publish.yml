@@ -18,18 +18,19 @@ jobs:
         model:
           - name: "qwen2.5:0.5b"
             tag: "qwen2.5-0.5b"
-          - name: "qwen2.5:1.5b"
-            tag: "qwen2.5-1.5b"
           - name: "llama3.2:1b"
             tag: "llama3.2-1b"
           - name: "llama3.2:3b"
             tag: "llama3.2-3b"
-          - name: "gemma3:1b"
-            tag: "gemma3-1b"
           - name: "deepseek-r1:1.5b"
             tag: "deepseek-r1-1.5b"
           - name: "gemma4:e4b"
             tag: "gemma4-e4b"
+        variant:
+          - dockerfile: Dockerfile
+            prefix: ollama
+          - dockerfile: Dockerfile.alpine
+            prefix: alpine
         arch:
           - runner: ubuntu-latest
             platform: linux/amd64
@@ -62,10 +63,13 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
+          file: ./${{ matrix.variant.dockerfile }}
           platforms: ${{ matrix.arch.platform }}
           push: true
-          build-args: MODEL=${{ matrix.model.name }}
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:ollama${{ env.OLLAMA_VERSION }}-${{ matrix.model.tag }}-${{ matrix.arch.suffix }}
+          build-args: |
+            MODEL=${{ matrix.model.name }}
+            OLLAMA_VERSION=${{ env.OLLAMA_VERSION }}
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ matrix.variant.prefix }}-${{ matrix.model.tag }}-${{ matrix.arch.suffix }}
 
   merge:
     needs: build
@@ -74,21 +78,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - model: "qwen2.5:0.5b"
-            tag: "qwen2.5-0.5b"
-          - model: "qwen2.5:1.5b"
-            tag: "qwen2.5-1.5b"
-          - model: "llama3.2:1b"
-            tag: "llama3.2-1b"
-          - model: "llama3.2:3b"
-            tag: "llama3.2-3b"
-          - model: "gemma3:1b"
-            tag: "gemma3-1b"
-          - model: "deepseek-r1:1.5b"
-            tag: "deepseek-r1-1.5b"
-          - model: "gemma4:e4b"
-            tag: "gemma4-e4b"
+        model:
+          - tag: "qwen2.5-0.5b"
+          - tag: "llama3.2-1b"
+          - tag: "llama3.2-3b"
+          - tag: "deepseek-r1-1.5b"
+          - tag: "gemma4-e4b"
+        variant:
+          - prefix: ollama
+          - prefix: alpine
 
     permissions:
       contents: read
@@ -108,13 +106,13 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=sha,prefix=ollama${{ env.OLLAMA_VERSION }}-${{ matrix.tag }}-
-            type=raw,value=ollama${{ env.OLLAMA_VERSION }}-${{ matrix.tag }},enable={{is_default_branch}}
+            type=sha,prefix=${{ matrix.variant.prefix }}-${{ matrix.model.tag }}-
+            type=raw,value=${{ matrix.variant.prefix }}-${{ matrix.model.tag }},enable={{is_default_branch}}
 
       - name: Create multi-arch manifest
         run: |
           while IFS= read -r TAG; do
             docker buildx imagetools create -t "${TAG}" \
-              ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:ollama${{ env.OLLAMA_VERSION }}-${{ matrix.tag }}-amd64 \
-              ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:ollama${{ env.OLLAMA_VERSION }}-${{ matrix.tag }}-arm64
+              ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ matrix.variant.prefix }}-${{ matrix.model.tag }}-amd64 \
+              ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ matrix.variant.prefix }}-${{ matrix.model.tag }}-arm64
           done <<< "${DOCKER_METADATA_OUTPUT_TAGS}"
