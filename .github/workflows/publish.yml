@@ -113,8 +113,8 @@ jobs:
 
       - name: Create multi-arch manifest
         run: |
-          for TAG in ${{ steps.meta.outputs.tags }}; do
+          while IFS= read -r TAG; do
             docker buildx imagetools create -t "${TAG}" \
               ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:ollama${{ env.OLLAMA_VERSION }}-${{ matrix.tag }}-amd64 \
               ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:ollama${{ env.OLLAMA_VERSION }}-${{ matrix.tag }}-arm64
-          done
+          done <<< "${DOCKER_METADATA_OUTPUT_TAGS}"

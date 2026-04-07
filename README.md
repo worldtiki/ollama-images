@@ -4,15 +4,15 @@ Pre-built Ollama Docker images with models already downloaded, ready to run.
 
 ## Available Images
 
-| Image                                                          | Model              | Use Case                   |
-|----------------------------------------------------------------|--------------------|----------------------------|
-| `ghcr.io/worldtiki/ollama-images:ollama0.20.2-qwen2.5-0.5b`   | `qwen2.5:0.5b`     | General chat               |
-| `ghcr.io/worldtiki/ollama-images:ollama0.20.2-qwen2.5-1.5b`   | `qwen2.5:1.5b`     | General chat               |
-| `ghcr.io/worldtiki/ollama-images:ollama0.20.2-llama3.2-1b`    | `llama3.2:1b`      | General chat, 128K context |
-| `ghcr.io/worldtiki/ollama-images:ollama0.20.2-llama3.2-3b`    | `llama3.2:3b`      | General chat               |
-| `ghcr.io/worldtiki/ollama-images:ollama0.20.2-gemma3-1b`      | `gemma3:1b`        | General chat               |
-| `ghcr.io/worldtiki/ollama-images:ollama0.20.2-deepseek-r1-1.5b` | `deepseek-r1:1.5b` | Reasoning                |
-| `ghcr.io/worldtiki/ollama-images:ollama0.20.2-gemma4-e4b`     | `gemma4:e4b`       | General chat               |
+| Image                                                           | Model              | Use Case                   |
+|-----------------------------------------------------------------|--------------------|----------------------------|
+| `ghcr.io/worldtiki/ollama-images:ollama0.20.2-qwen2.5-0.5b`     | `qwen2.5:0.5b`     | General chat               |
+| `ghcr.io/worldtiki/ollama-images:ollama0.20.2-qwen2.5-1.5b`     | `qwen2.5:1.5b`     | General chat               |
+| `ghcr.io/worldtiki/ollama-images:ollama0.20.2-llama3.2-1b`      | `llama3.2:1b`      | General chat, 128K context |
+| `ghcr.io/worldtiki/ollama-images:ollama0.20.2-llama3.2-3b`      | `llama3.2:3b`      | General chat               |
+| `ghcr.io/worldtiki/ollama-images:ollama0.20.2-gemma3-1b`        | `gemma3:1b`        | General chat               |
+| `ghcr.io/worldtiki/ollama-images:ollama0.20.2-deepseek-r1-1.5b` | `deepseek-r1:1.5b` | Reasoning                  |
+| `ghcr.io/worldtiki/ollama-images:ollama0.20.2-gemma4-e4b`       | `gemma4:e4b`       | General chat               |
 
 ## Usage
 
