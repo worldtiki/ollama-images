@@ -15,20 +15,20 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - model: "qwen2.5:0.5b"
+        model:
+          - name: "qwen2.5:0.5b"
             tag: "qwen2.5-0.5b"
-          - model: "qwen2.5:1.5b"
+          - name: "qwen2.5:1.5b"
             tag: "qwen2.5-1.5b"
-          - model: "llama3.2:1b"
+          - name: "llama3.2:1b"
             tag: "llama3.2-1b"
-          - model: "llama3.2:3b"
+          - name: "llama3.2:3b"
             tag: "llama3.2-3b"
-          - model: "gemma3:1b"
+          - name: "gemma3:1b"
             tag: "gemma3-1b"
-          - model: "deepseek-r1:1.5b"
+          - name: "deepseek-r1:1.5b"
             tag: "deepseek-r1-1.5b"
-          - model: "gemma4:e4b"
+          - name: "gemma4:e4b"
             tag: "gemma4-e4b"
         arch:
           - runner: ubuntu-latest
@@ -64,8 +64,8 @@ jobs:
           context: .
           platforms: ${{ matrix.arch.platform }}
           push: true
-          build-args: MODEL=${{ matrix.model }}
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:ollama${{ env.OLLAMA_VERSION }}-${{ matrix.tag }}-${{ matrix.arch.suffix }}
+          build-args: MODEL=${{ matrix.model.name }}
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:ollama${{ env.OLLAMA_VERSION }}-${{ matrix.model.tag }}-${{ matrix.arch.suffix }}
 
   merge:
     needs: build
