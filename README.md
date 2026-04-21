@@ -8,7 +8,7 @@ Pre-built Ollama Docker images with models already downloaded, ready to run.
 
 | Image                                                     | Model              | Use Case                   |
 |-----------------------------------------------------------|--------------------|----------------------------|
-| `ghcr.io/worldtiki/ollama-images:ollama-qwen2.5-0.5b`     | `qwen2.5:0.5b`     | General chat               |
+| `ghcr.io/worldtiki/ollama-images:ollama-qwen3.5-0.8b`     | `qwen3.5:0.8b`     | General chat               |
 | `ghcr.io/worldtiki/ollama-images:ollama-llama3.2-1b`      | `llama3.2:1b`      | General chat, 128K context |
 | `ghcr.io/worldtiki/ollama-images:ollama-llama3.2-3b`      | `llama3.2:3b`      | General chat               |
 | `ghcr.io/worldtiki/ollama-images:ollama-deepseek-r1-1.5b` | `deepseek-r1:1.5b` | Reasoning                  |
@@ -18,7 +18,7 @@ Pre-built Ollama Docker images with models already downloaded, ready to run.
 
 | Image                                                     | Model              | Use Case                   |
 |-----------------------------------------------------------|--------------------|----------------------------|
-| `ghcr.io/worldtiki/ollama-images:alpine-qwen2.5-0.5b`     | `qwen2.5:0.5b`     | General chat               |
+| `ghcr.io/worldtiki/ollama-images:alpine-qwen3.5-0.8b`     | `qwen3.5:0.8b`     | General chat               |
 | `ghcr.io/worldtiki/ollama-images:alpine-llama3.2-1b`      | `llama3.2:1b`      | General chat, 128K context |
 | `ghcr.io/worldtiki/ollama-images:alpine-llama3.2-3b`      | `llama3.2:3b`      | General chat               |
 | `ghcr.io/worldtiki/ollama-images:alpine-deepseek-r1-1.5b` | `deepseek-r1:1.5b` | Reasoning                  |
@@ -27,7 +27,7 @@ Pre-built Ollama Docker images with models already downloaded, ready to run.
 ## Usage
 
 ```bash
-docker run -p 11434:11434 ghcr.io/worldtiki/ollama-images:ollama-qwen2.5-0.5b
+docker run -p 11434:11434 ghcr.io/worldtiki/ollama-images:ollama-qwen3.5-0.8b
 ```
 
 The model is already included in the image — no download required at startup.
