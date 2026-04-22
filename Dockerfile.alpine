@@ -2,7 +2,13 @@ ARG OLLAMA_VERSION="0.20.2"
 FROM alpine/ollama:${OLLAMA_VERSION}
 
 ARG MODEL="qwen3.5:0.8b"
-ENV OLLAMA_MODELS=/models
+ENV OLLAMA_MODELS=/models \
+    OLLAMA_FLASH_ATTENTION=1 \
+    OLLAMA_KV_CACHE_TYPE=f16 \
+    OLLAMA_KEEP_ALIVE=-1 \
+    OLLAMA_MAX_LOADED_MODELS=1 \
+    OLLAMA_NUM_PARALLEL=1 \
+    WARMUP_MODEL=${MODEL}
 
 RUN ollama serve & \
     pid=$!; \
@@ -21,3 +27,6 @@ RUN ollama serve & \
     ollama pull ${MODEL} && \
     kill "$pid" >/dev/null 2>&1 || true; \
     wait "$pid" 2>/dev/null || true
+
+COPY --chmod=0755 entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
