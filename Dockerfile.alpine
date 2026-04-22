@@ -2,8 +2,7 @@ ARG OLLAMA_VERSION="0.20.2"
 FROM alpine/ollama:${OLLAMA_VERSION}
 
 ARG MODEL="qwen3.5:0.8b"
-ENV OLLAMA_MODELS=/models \
-    WARMUP_MODEL=${MODEL}
+ENV OLLAMA_MODELS=/models
 
 RUN ollama serve & \
     pid=$!; \
@@ -22,6 +21,3 @@ RUN ollama serve & \
     ollama pull ${MODEL} && \
     kill "$pid" >/dev/null 2>&1 || true; \
     wait "$pid" 2>/dev/null || true
-
-COPY --chmod=0755 entrypoint.sh /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
