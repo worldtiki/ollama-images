@@ -18,16 +18,12 @@ jobs:
         model:
           - name: "qwen3.5:0.8b"
             tag: "qwen3.5-0.8b"
+          - name: "qwen3:8b"
+            tag: "qwen3-8b"
           - name: "qwen2.5:0.5b"
             tag: "qwen2.5-0.5b"
-          - name: "llama3.2:1b"
-            tag: "llama3.2-1b"
-          - name: "llama3.2:3b"
-            tag: "llama3.2-3b"
           - name: "deepseek-r1:1.5b"
             tag: "deepseek-r1-1.5b"
-          - name: "gemma4:e4b"
-            tag: "gemma4-e4b"
         variant:
           - dockerfile: Dockerfile
             prefix: ollama
@@ -82,11 +78,9 @@ jobs:
       matrix:
         model:
           - tag: "qwen3.5-0.8b"
+          - tag: "qwen3-8b"
           - tag: "qwen2.5-0.5b"
-          - tag: "llama3.2-1b"
-          - tag: "llama3.2-3b"
           - tag: "deepseek-r1-1.5b"
-          - tag: "gemma4-e4b"
         variant:
           - prefix: ollama
           - prefix: alpine
