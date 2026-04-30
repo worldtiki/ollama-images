@@ -18,10 +18,8 @@ jobs:
         model:
           - name: "qwen3.5:0.8b"
             tag: "qwen3.5-0.8b"
-          - name: "qwen3:8b"
-            tag: "qwen3-8b"
-          - name: "qwen3:4b"
-            tag: "qwen3-4b"
+          - name: "qwen3:1.7b"
+            tag: "qwen3-1.7b"
           - name: "qwen2.5:0.5b"
             tag: "qwen2.5-0.5b"
           - name: "deepseek-r1:1.5b"
@@ -80,8 +78,7 @@ jobs:
       matrix:
         model:
           - tag: "qwen3.5-0.8b"
-          - tag: "qwen3-8b"
-          - tag: "qwen3-4b"
+          - tag: "qwen3-1.7b"
           - tag: "qwen2.5-0.5b"
           - tag: "deepseek-r1-1.5b"
         variant:
