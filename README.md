@@ -10,6 +10,7 @@ Pre-built Ollama Docker images with models already downloaded, ready to run.
 |-----------------------------------------------------------|--------------------|----------------------------|
 | `ghcr.io/worldtiki/ollama-images:ollama-qwen3.5-0.8b`     | `qwen3.5:0.8b`     | General chat               |
 | `ghcr.io/worldtiki/ollama-images:ollama-qwen3-8b`         | `qwen3:8b`         | General chat               |
+| `ghcr.io/worldtiki/ollama-images:ollama-qwen3-4b`         | `qwen3:4b`         | General chat               |
 | `ghcr.io/worldtiki/ollama-images:ollama-qwen2.5-0.5b`     | `qwen2.5:0.5b`     | General chat               |
 | `ghcr.io/worldtiki/ollama-images:ollama-deepseek-r1-1.5b` | `deepseek-r1:1.5b` | Reasoning                  |
 
@@ -19,6 +20,7 @@ Pre-built Ollama Docker images with models already downloaded, ready to run.
 |-----------------------------------------------------------|--------------------|----------------------------|
 | `ghcr.io/worldtiki/ollama-images:alpine-qwen3.5-0.8b`     | `qwen3.5:0.8b`     | General chat               |
 | `ghcr.io/worldtiki/ollama-images:alpine-qwen3-8b`         | `qwen3:8b`         | General chat               |
+| `ghcr.io/worldtiki/ollama-images:alpine-qwen3-4b`         | `qwen3:4b`         | General chat               |
 | `ghcr.io/worldtiki/ollama-images:alpine-qwen2.5-0.5b`     | `qwen2.5:0.5b`     | General chat               |
 | `ghcr.io/worldtiki/ollama-images:alpine-deepseek-r1-1.5b` | `deepseek-r1:1.5b` | Reasoning                  |
 
